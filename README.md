@@ -4,7 +4,7 @@ A minimal web app for padding uploaded images onto a target aspect-ratio canvas 
 
 ## Features
 
-- Upload PNG, JPEG, or WEBP images up to 50 MB.
+- Upload PNG or JPEG images up to 50 MB.
 - Create a new canvas for popular aspect ratios without resizing the original image.
 - Enter a custom ratio such as `5:4`, `2:3`, or `1.25`.
 - Choose a manual background color or auto-pick the dominant color from the image.
