@@ -24,18 +24,14 @@ Open `http://localhost:8030`.
 
 ## Run With Docker Compose
 
-Create a `.env` file with your Cloudflare tunnel token:
-
-```bash
-TUNNEL_TOKEN=your-cloudflare-tunnel-token
-```
-
 ```bash
 docker compose up --build
 ```
 
-The Compose setup runs the FastAPI app and an official Cloudflared tunnel container. In your Cloudflare tunnel/public hostname settings, route the service to:
+If you want to deploy using cloudflared tunnel
 
-```text
-http://app:8030
+Create a `.env` file with your Cloudflare tunnel token:
+
+```bash
+TUNNEL_TOKEN=your-cloudflare-tunnel-token
 ```
