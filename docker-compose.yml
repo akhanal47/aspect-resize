@@ -1,0 +1,20 @@
+services:
+  app:
+    build: .
+    container_name: aspect_resize
+    restart: unless-stopped
+    expose:
+      - "8030"
+    volumes:
+      - aspect_resize_tmp:/tmp/aspect-resize-results
+
+  reverse-proxy:
+    image: cloudflare/cloudflared:latest
+    container_name: aspect_resize_cloudflared
+    restart: unless-stopped
+    depends_on:
+      - app
+    command: tunnel --no-autoupdate run --token ${TUNNEL_TOKEN:?Set TUNNEL_TOKEN in .env}
+
+volumes:
+  aspect_resize_tmp:

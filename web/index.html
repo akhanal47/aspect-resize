@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Insta Resize</title>
+    <link rel="stylesheet" href="/static/styles.css?v=4" />
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar">
+        <div>
+          <span class="eyebrow">Image canvas and carousel tool</span>
+          <h1>Resize Images for Social Medias</h1>
+          <p>Pad images to common ratios or split wide images into square carousel tiles.</p>
+        </div>
+      </header>
+
+      <section class="workspace">
+        <form id="tool-form" class="panel">
+          <label class="dropzone" for="image">
+            <input id="image" name="image" type="file" accept="image/png,image/jpeg,image/webp" required />
+            <span class="drop-icon">+</span>
+            <span id="file-label">Choose an image</span>
+            <small>PNG or JPEG up to 50 MB</small>
+          </label>
+
+          <div class="preview-wrap">
+            <img id="source-preview" alt="" hidden />
+            <div id="source-meta" class="meta">No image selected</div>
+          </div>
+
+          <div class="field">
+            <span class="label">Mode</span>
+            <div class="segmented">
+              <label><input type="radio" name="mode" value="canvas" checked /><span>Canvas</span></label>
+              <label><input type="radio" name="mode" value="chunks" /><span>Carousel chunks</span></label>
+            </div>
+          </div>
+
+          <div id="canvas-options" class="options">
+            <label class="field">
+              <span class="label">Target ratio</span>
+              <select id="ratio-select">
+                <option value="1:1">1:1 Square</option>
+                <option value="4:5">4:5 Instagram portrait</option>
+                <option value="3:4">3:4 Portrait</option>
+                <option value="9:16">9:16 Story/Reel</option>
+                <option value="16:9">16:9 Landscape</option>
+                <option value="21:9">21:9 Ultrawide</option>
+                <option value="custom">Custom</option>
+              </select>
+            </label>
+
+            <label id="custom-ratio-field" class="field" hidden>
+              <span class="label">Custom ratio</span>
+              <input id="custom-ratio" type="text" placeholder="5:4 or 1.25" />
+            </label>
+          </div>
+
+          <div id="chunk-options" class="options" hidden>
+            <label class="field">
+              <span class="label">Number of square chunks</span>
+              <select id="chunk-count">
+                <option value="auto">Auto</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="8">8</option>
+                <option value="10">10</option>
+              </select>
+            </label>
+
+            <label class="field">
+              <span class="label">Carousel padding</span>
+              <select id="carousel-padding">
+                <option value="long_edge">Pad long edge to exact squares</option>
+                <option value="full_canvas">Pad full canvas to exact squares</option>
+                <option value="none">No padding on the whole image</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="field">
+            <span class="label">Background</span>
+            <div class="segmented">
+              <label><input type="radio" name="background_mode" value="auto" checked /><span>Auto choose color</span></label>
+              <label><input type="radio" name="background_mode" value="manual" /><span>Pick color</span></label>
+            </div>
+          </div>
+
+          <label id="color-field" class="field color-row" hidden>
+            <span class="label">Background color</span>
+            <input id="background-color" type="color" value="#ffffff" />
+          </label>
+
+          <label class="field">
+            <span class="label">Output format</span>
+            <select id="output-format">
+              <option value="PNG">PNG</option>
+              <option value="JPEG">JPEG</option>
+            </select>
+          </label>
+
+          <button class="primary" type="submit">Process image</button>
+          <p id="status" class="status" role="status"></p>
+        </form>
+
+        <section class="results">
+          <div class="results-head">
+            <div>
+              <h2>Output</h2>
+              <p id="expiry">Generated files are kept for 20 minutes.</p>
+            </div>
+            <a id="download-all" class="button" hidden>Download all</a>
+          </div>
+          <div id="result-grid" class="result-grid empty">
+            <div class="empty-state">
+              <span class="empty-mark"></span>
+              <span>Your processed images will appear here.</span>
+            </div>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <script src="/static/app.js?v=4"></script>
+  </body>
+</html>
